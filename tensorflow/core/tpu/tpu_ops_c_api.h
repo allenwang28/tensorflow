@@ -313,6 +313,8 @@ TFTPU_CAPI_EXPORT void TpuProgram_FreeArray(XLA_TpuProgram* tpu_program[]);
 TFTPU_CAPI_EXPORT void TpuProgram_UnloadAndDestroy(XLA_TpuProgram* tpu_program,
                                                    TF_Status* status);
 
+TFTPU_CAPI_EXPORT void TpuGlobalInitialize();
+
 // Gets TPU program size in bytes from the `tpu_program`.
 TFTPU_CAPI_EXPORT int64_t
 TpuProgram_GetProgramSize(const XLA_TpuProgram* tpu_program);
@@ -473,6 +475,8 @@ struct TfTpu_OpsApiFn {
   TFTPU_ADD_FN_IN_STRUCT(TpuNodeContext_StopChipHeartbeats);
   TFTPU_ADD_FN_IN_STRUCT(TpuNodeContext_CloseTpuHost);
   TFTPU_ADD_FN_IN_STRUCT(TpuNodeContext_Initialize);
+
+  TFTPU_ADD_FN_IN_STRUCT(TpuGlobalInitialize);
 };
 
 }  // extern "C"
