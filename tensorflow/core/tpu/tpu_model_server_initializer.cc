@@ -35,13 +35,13 @@ namespace tensorflow {
 namespace tpu {
 
 #if defined(PLATFORM_GOOGLE)
-Status InitializeTpuLibrary(void* library_handle) {
+Status InitializeModelServer(void* library_handle) {
   return errors::Unimplemented("You must statically link in a TPU library.");
 }
 #else  // PLATFORM_GOOGLE
 #include "tensorflow/core/tpu/tpu_library_init_fns.inc"
 
-Status InitializeTpuLibrary(void* library_handle) {
+Status InitializeModelServer(void* library_handle) {
   Status s = InitializeTpuStructFns(library_handle);
 
   // Retrieve arguments from environment if applicable
@@ -65,15 +65,15 @@ Status InitializeTpuLibrary(void* library_handle) {
   return s;
 }
 
-bool FindAndLoadTpuLibrary() {
+bool FindAndLoadModelServer() {
   void* library = dlopen("libtpu.so", RTLD_NOW);
   if (library) {
-    InitializeTpuLibrary(library);
+    InitializeModelServer(library);
   }
   return true;
 }
 
-static bool tpu_library_finder = FindAndLoadTpuLibrary();
+static bool tpu_library_finder = FindAndLoadModelServer();
 #endif  // PLATFORM_GOOGLE
 
 }  // namespace tpu
