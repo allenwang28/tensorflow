@@ -19,7 +19,7 @@ limitations under the License.
 
 #include "tensorflow/core/platform/errors.h"
 #include "tensorflow/core/platform/status.h"
-#include "tensorflow/core/tpu/tpu_model_server_set_fn.h"
+#include "tensorflow/core/tpu/tpu_api_dlsym_set_fn.h"
 #if !defined(PLATFORM_GOOGLE)
 #include "tensorflow/core/tpu/tpu_api.h"
 #include "tensorflow/stream_executor/tpu/tpu_executor_c_api.h"
