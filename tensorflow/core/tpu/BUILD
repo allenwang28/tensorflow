@@ -314,3 +314,27 @@ cc_library(
         "//tensorflow/core/lib/core:status",
     ],
 )
+
+cc_library(
+    name = "tpu_model_server_initializer",
+    srcs = ["tpu_model_server_initializer.cc"],
+    hdrs = ["tpu_model_server_initializer.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":libtftpu_header",
+        ":tpu_api",
+        ":tpu_api_dlsym_set_fn",
+        ":tpu_executor_init_fns",
+        ":tpu_initializer_helper",
+        ":tpu_library_init_fns",
+        ":tpu_ops_c_api_hdrs",
+        "//tensorflow/core:lib",
+        "//tensorflow/stream_executor/tpu:tpu_executor",
+        "//tensorflow/stream_executor/tpu:tpu_executor_c_api_hdrs",
+    ],
+    # Always link this in, because even if we don't use it directly we want its
+    #static initializers to dynamically load API symbols exported from libtpu.so
+    alwayslink = True,
+)
+
+
