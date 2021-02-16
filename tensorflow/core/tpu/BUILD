@@ -306,3 +306,26 @@ cc_library(
     ],
     alwayslink = True,
 )
+
+cc_library(
+    name = "tpu_model_server_initializer",
+    srcs = ["tpu_model_server_initializer.cc"],
+    hdrs = ["tpu_model_server_initializer.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":libtftpu_header",
+        ":tpu_api",
+        ":tpu_api_dlsym_set_fn",
+        ":tpu_compilation_device",
+        ":tpu_executor_init_fns",
+        ":tpu_library_init_fns",
+        ":tpu_ops_c_api_hdrs",
+        "//tensorflow/core:lib",
+        "//tensorflow/core/tpu/graph_rewrite:tpu_rewrite_pass_registration",
+        "//tensorflow/stream_executor/tpu:tpu_computation_placer",
+        "//tensorflow/stream_executor/tpu:tpu_executor_c_api_hdrs",
+    ],
+    alwayslink = True,
+)
+
+
