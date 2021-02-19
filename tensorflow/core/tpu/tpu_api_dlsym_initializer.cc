@@ -19,6 +19,7 @@ limitations under the License.
 
 #include "tensorflow/core/platform/errors.h"
 #include "tensorflow/core/platform/status.h"
+#include "tensorflow/core/platform/logging.h"
 #include "tensorflow/core/tpu/tpu_api_dlsym_set_fn.h"
 
 #if !defined(PLATFORM_GOOGLE)
@@ -42,6 +43,7 @@ Status InitializeTpuLibrary(void* library_handle) {
 #include "tensorflow/core/tpu/tpu_library_init_fns.inc"
 
 Status InitializeTpuLibrary(void* library_handle) {
+  LOG(INFO) << "InitializeTpuLibrary";
   Status s = InitializeTpuStructFns(library_handle);
 
   // Retrieve arguments from environment if applicable
