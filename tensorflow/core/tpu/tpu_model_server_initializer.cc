@@ -19,6 +19,7 @@ limitations under the License.
 
 #include "tensorflow/core/platform/errors.h"
 #include "tensorflow/core/platform/status.h"
+#include "tensorflow/core/platform/logging.h"
 #include "tensorflow/core/tpu/tpu_api_dlsym_set_fn.h"
 
 #if !defined(PLATFORM_GOOGLE)
@@ -63,10 +64,13 @@ Status InitializeTpuModelServer(void* library_handle) {
 }
 
 bool FindAndLoadTpuModelServer() {
-  if (!TryAcquireTpuLock()) return false;
+  LOG(INFO) << "Find and load TPU Model server";
   void* library = dlopen("libtpu.so", RTLD_NOW);
   if (library) {
-    InitializeTpuModelServer(library);
+    if (TryAcquireTpuLock()) {
+      LOG(INFO) << "Initialize TPU Model Server";
+      InitializeTpuModelServer(library);
+    }
   }
   return true;
 }
