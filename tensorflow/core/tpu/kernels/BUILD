@@ -36,6 +36,7 @@ tf_kernel_library(
         ":tpu_execute_op",
         ":tpu_handle_to_key_op",
         ":transfer_ops",
+        ":tpu_ordinal_selector_op",
     ],
 )
 
@@ -882,4 +883,13 @@ cc_library(
         "//tensorflow/core/tpu:tpu_api",
         "//tensorflow/core:framework",
     ],
+)
+
+cc_library(
+    name = "tpu_ordinal_selector_op",
+    srcs = ["tpu_ordinal_selector_op.cc"],
+    deps = [
+        "//tensorflow/core:framework",
+    ],
+    alwayslink = 1,
 )
