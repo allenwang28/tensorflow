@@ -19,7 +19,7 @@ class TPUOrdinalSelectorOp : public OpKernel {
 
   void Compute(OpKernelContext* ctx) override {
     Tensor output(DT_INT32, TensorShape({}));
-    output.flat<int>().setValues({tpu::kDeferredCoreSelectionReserved});
+    output.flat<int>().setValues({-8193});
     ctx->set_output(0, output);
     ctx->SetStatus(Status::OK());
   }
