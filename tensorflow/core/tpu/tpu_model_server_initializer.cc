@@ -32,7 +32,6 @@ namespace {
 #if !defined(PLATFORM_GOOGLE)
 #include "tensorflow/core/tpu/tpu_library_init_fns.inc"
 Status InitializeTpuLib(void* library_handle) {
-  LOG(INFO) << "hello there";
   Status s = InitializeTpuStructFns(library_handle);
 
   // Retrieve arguments from environment if applicable
@@ -58,6 +57,7 @@ Status InitializeTpuLib(void* library_handle) {
 
 
 bool FindAndLoadTpuModelServer() {
+  LOG(INFO) << "hello there";
   void* library = dlopen("libtpu.so", RTLD_NOW);
   if (library) {
     if (TryAcquireTpuLock()) {
