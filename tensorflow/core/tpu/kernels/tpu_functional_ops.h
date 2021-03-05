@@ -28,6 +28,7 @@ limitations under the License.
 #include "tensorflow/core/tpu/tpu_ops_c_api.h"
 #include "tensorflow/core/util/reffed_status_callback.h"
 #include "absl/container/flat_hash_map.h"
+#include "absl/base/call_once.h"
 
 namespace tensorflow {
 // Holds node's shape information for Concat/Split.
