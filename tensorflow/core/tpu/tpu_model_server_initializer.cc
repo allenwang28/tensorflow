@@ -61,10 +61,13 @@ bool FindAndLoadTpuModelServer() {
   void* library = dlopen("libtpu.so", RTLD_NOW);
   if (library) {
     if (TryAcquireTpuLock()) {
+      LOG(INFO) << "Acquired lock";
       InitializeTpuLib(library);
     }
   }
+  LOG(INFO) << "Initializing model server";
   OpsApiFn()->TfTpu_InitializeTpuModelServerFn();
+  LOG(INFO) << "Done initializing model server";
   return true;
 }
 
