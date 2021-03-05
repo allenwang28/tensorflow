@@ -23,6 +23,7 @@ limitations under the License.
 #include "tensorflow/core/tpu/tpu_api_dlsym_set_fn.h"
 #include "tensorflow/core/tpu/tpu_api.h"
 #include "tensorflow/core/tpu/tpu_initializer_helper.h"
+#include "tensorflow/core/platform/logging.h"
 #include "tensorflow/stream_executor/tpu/tpu_platform.h"
 
 namespace tensorflow {
@@ -31,6 +32,7 @@ namespace {
 #if !defined(PLATFORM_GOOGLE)
 #include "tensorflow/core/tpu/tpu_library_init_fns.inc"
 Status InitializeTpuLib(void* library_handle) {
+  LOG(INFO) << "hello there";
   Status s = InitializeTpuStructFns(library_handle);
 
   // Retrieve arguments from environment if applicable
