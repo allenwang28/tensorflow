@@ -14,6 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 #include "tensorflow/core/tpu/tpu_model_server_initializer.h"
+#include "tensorflow/core/tpu/tpu_api_dlsym_initializer.h"
 
 #include <dlfcn.h>
 
