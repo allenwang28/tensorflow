@@ -340,5 +340,4 @@ cc_library(
         "//tensorflow/stream_executor/tpu:tpu_executor",
         "//tensorflow/stream_executor/tpu:tpu_executor_c_api_hdrs",
     ],
-    alwayslink = True,
 )
