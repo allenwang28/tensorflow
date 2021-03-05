@@ -31,6 +31,7 @@ namespace {
 #if !defined(PLATFORM_GOOGLE)
 #include "tensorflow/core/tpu/tpu_library_init_fns.inc"
 Status InitializeTpuLib(void* library_handle) {
+  LOG(INFO) << "Initialize TPU Struct fns";
   Status s = InitializeTpuStructFns(library_handle);
 
   // Retrieve arguments from environment if applicable
@@ -47,6 +48,7 @@ Status InitializeTpuLib(void* library_handle) {
     (*initialize_fn)(/*init_library=*/true, args.second.size(),
                      args.second.data());
 
+    LOG(INFO) << "Register TPU Platform";
     RegisterTpuPlatform();
   }
 
