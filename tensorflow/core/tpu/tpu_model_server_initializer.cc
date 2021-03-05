@@ -29,6 +29,7 @@ namespace tensorflow {
 namespace tpu {
 namespace {
 #if !defined(PLATFORM_GOOGLE)
+#include "tensorflow/core/tpu/tpu_library_init_fns.inc"
 Status InitializeTpuLib(void* library_handle) {
   Status s = InitializeTpuStructFns(library_handle);
 
